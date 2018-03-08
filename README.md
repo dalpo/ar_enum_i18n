@@ -22,7 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class User < ActiveRecord::Base
+  include ArEnumI18n
+
+  enum status: %i[active]
+  enum_i18n :status
+end
+```
+
+## Methods
 
 ## Development
 
