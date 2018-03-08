@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "ar/enum/i18n"
+require "ar_enum_i18n"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
