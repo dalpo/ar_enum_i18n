@@ -50,7 +50,7 @@ I18n.t [:activerecord, :enum, User.name.underscore, enum_field, enum_value].join
 
 ### enum_i18n(*args)
 
-> Define i18n methods for one enum fields.
+> Define i18n methods for one or more enum fields.
 
 ```ruby
 class User < ActiveRecord::Base

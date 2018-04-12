@@ -18,14 +18,23 @@ module ArEnumI18n
 
     def initialize_enum_i18n(key)
       method_name = :"human_#{key}"
+      pluralized_key = key.to_s.pluralize
 
       define_singleton_method method_name do |enum_value|
         translate_enum_i18n(key, enum_value)
       end
 
-      define_singleton_method :"#{key}_enum" do
-        send(key.to_s.pluralize).keys.map do |value|
-          [send(method_name, value), value]
+      # The first argument indicate if the enum should countain
+      # integer or string value into the array
+      define_singleton_method :"#{key}_enum" do |*args|
+        with_integer_values = args[0] == true
+        enum_definition = send(pluralized_key)
+
+        enum_definition.keys.map do |value|
+          [
+            send(method_name, value),
+            with_integer_values ? enum_definition[value] : value
+          ]
         end
       end
 
