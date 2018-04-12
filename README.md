@@ -1,15 +1,19 @@
 # ActiveRecord Enum I18n
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ar/enum/i18n`. To experiment with that code, run `bin/console` for an interactive prompt.
+ActiveRecord Enum internationalizations utils gem
 
-TODO: Delete this and the text above, and describe your gem
+## Roadmap / TODO
+
+- [ ] Better documentation
+- [ ] Test coverage
+- [ ] Gem release
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ar_enum_i18n'
+gem 'ar_enum_i18n', github: 'dalpo/ar_enum_i18n'
 ```
 
 And then execute:
@@ -31,7 +35,37 @@ class User < ActiveRecord::Base
 end
 ```
 
-## Methods
+## Instance Methods
+
+### human_#{enum_field}
+
+> Return the translated enum value. Equivalent to:
+
+```ruby
+I18n.t [:activerecord, :enum, User.name.underscore, enum_field, enum_value].join('.'),
+        default: enum_value.to_s.humanize
+```
+
+## Class Methods
+
+### enum_i18n(*args)
+
+> Define i18n methods for one enum fields.
+
+```ruby
+class User < ActiveRecord::Base
+  include ArEnumI18n
+
+  enum status: %i[active archived]
+  enum alarm_level: %i[none warning dander]
+
+  enum_i18n :status, :alarm_level
+end
+```
+
+### #{key}_enum
+
+> Return an array with the `['enum translated label', 'enum value']` for each enum value.
 
 ## Development
 
