@@ -13,7 +13,7 @@ ActiveRecord Enum internationalizations utils gem
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ar_enum_i18n', github: 'dalpo/ar_enum_i18n'
+gem 'ar_enum_i18n', '~> 0.1.0'
 ```
 
 And then execute:
